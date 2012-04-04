@@ -1,0 +1,14 @@
+.DS_Store
+results.html
+pkg
+html
+data/*
+oldcode/*
+junk/*
+log/*.log
+*.log
+tmp/**/*
+tmp/*
+doc/api
+doc/app
+*.swp
