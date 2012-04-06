@@ -175,7 +175,6 @@ class ParseCddbFile
           discid = $1
         when /^EXTD=(.*)/
           extd << $1
-        #when /^(TTITLE|TARTIST|EXTT)(\d+)=(.*)/
         when /^(#{trackmap.keys.join("|")})(\d+)=(.*)/
           field, trackno, value = $1, $2, $3
           field = trackmap[field]
@@ -187,7 +186,15 @@ class ParseCddbFile
         end
       end
       disk_artist, disk_album = artist_album.split(/\s+\/\s+/)
-      disk_artist = "Various Artists" if compilation == 1
+      if compilation == 1
+        disk_artist = "Various Artists"
+      else
+        tracks.each do |k,v|
+          if tracks[k][:artist].nil?
+            tracks[k][:artist] = disk_artist
+          end
+        end
+      end
       ref = {
         artist: disk_artist,
         album: disk_album,
