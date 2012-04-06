@@ -1,4 +1,5 @@
 #require "cddb_parser/version"
+require 'yaml'
 
 module CddbParser
 
@@ -203,7 +204,6 @@ class ParseCddbFile
         playorder: playorder,
         tracks: tracks
       }
-      pp ref
       [discid, ref]
   end
 
@@ -211,25 +211,7 @@ class ParseCddbFile
     puts "Here in parsecddb list! (#{option})"
     @files.each do |f|
       discid, ref = self.scan_file(f)
-      print <<-EOF
-discid:    #{discid}
-artist:    #{ref[:artist]}
-album:     #{ref[:album]}
-year:      #{ref[:year]}
-genre:     #{ref[:genre]}
-playorder: #{ref[:playorder]}
-tracks:
-EOF
-      ref[:tracks].each do |t,k|
-        print <<-EOF
-  #{t}:
-    title:  "#{k[:title]}"
-    artist: "#{k[:artist]}"
-    offset: #{k[:offset].to_s}
-    ext:    "#{k[:ext]}"
-  EOF
-      end
-      exit 0
+      puts YAML.dump(ref)
     end
   end
 

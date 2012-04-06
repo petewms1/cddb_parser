@@ -66,19 +66,7 @@
   
 </nav>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
-
-  <ul class="link-list">
-  
-  
-    <li><span class="include">Methadone::Main</span>
-  
-  
-  </ul>
-</nav>
-
+    
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -90,6 +78,8 @@
     <li><a href="#method-i-fix_mins">#fix_mins</a>
     
     <li><a href="#method-i-fix_offsets">#fix_offsets</a>
+    
+    <li><a href="#method-i-go-21">#go!</a>
     
   </ul>
 </nav>
@@ -4288,9 +4278,13 @@
 
   <ul class="link-list">
   
-    <li><a href="./Album.html">Album</a>
-  
     <li><a href="./CddbParser.html">CddbParser</a>
+  
+    <li><a href="./CddbParser/GetOpts.html">CddbParser::GetOpts</a>
+  
+    <li><a href="./CddbParser/ParseCddbFile.html">CddbParser::ParseCddbFile</a>
+  
+    <li><a href="./Album.html">Album</a>
   
     <li><a href="./KaraokeSong.html">KaraokeSong</a>
   
@@ -4474,6 +4468,46 @@
 
         
       </div><!-- fix_offsets-method -->
+
+    
+      <div id="method-i-go-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">go!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="go-21-source">
+            <pre><span class="ruby-comment"># File bin/cddb_parser, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">go!</span>
+  <span class="ruby-identifier">options</span> = <span class="ruby-constant">CddbParser</span><span class="ruby-operator">::</span><span class="ruby-constant">GetOpts</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">ARGV</span>)
+  <span class="ruby-identifier">pp</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-identifier">cddb</span> = <span class="ruby-constant">CddbParser</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseCddbFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">files</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">check</span>
+    <span class="ruby-identifier">cddb</span>.<span class="ruby-identifier">check_files</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">list</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;loption: #{options.list}&quot;</span>
+    <span class="ruby-identifier">cddb</span>.<span class="ruby-identifier">list_files</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">list</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">store</span>
+    <span class="ruby-identifier">cddb</span>.<span class="ruby-identifier">store_files</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">store</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">user</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">password</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- go-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- go-21-method -->
 
     
     </section><!-- public-instance-method-details -->
