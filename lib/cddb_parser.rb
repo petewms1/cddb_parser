@@ -1,5 +1,7 @@
 #require "cddb_parser/version"
+#require 'active_record'
 require 'yaml'
+#require_relative '../lib/db_stuff'
 
 module CddbParser
 
@@ -155,6 +157,7 @@ class ParseCddbFile
     trkct = 0
 
     File.open(file).each do |line|
+      #puts "FILE: #{file}"
       line.chomp
       case line
         when /^#\s+(\d+)\s*$/
@@ -217,8 +220,15 @@ class ParseCddbFile
 
   def store_files(db, user, pw)
     puts "Here in parsecddb store! (#{db}, #{user}, #{pw})"
+    @files.each do |f|
+      discid, ref = self.scan_file(f)
+      #puts YAML.dump(ref)
+      #DbStuff::add_disk(ref)
+      #conn = DbStuff::get_connection
+    end
   end
 
 end # class ParseCddbFile
 
 end # Module CddbParser
+
