@@ -3,6 +3,7 @@
 require 'optparse'
 require 'pp'
 require 'ostruct'
+#require_relative '../lib/db_stuff'
 require_relative '../lib/cddb_parser'
 
 
